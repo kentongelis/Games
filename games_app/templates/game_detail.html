@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <fieldset>
+    <img src="/{{ game.image }}" width = "200" alt= "Game Image"/>
+    <h2>{{ game.title }}</h2>
+    <p>{{ game.description }}</p>
+    <h4>Price: {{ game.price }}</h4>
+    <h4>Rating: {{ game.rating }}</h4>
+    <h4>Publisher: <a href="/profile/{{ game.publisher.id }}">{{ game.publisher }}</a></h4>
+    {% if current_user.is_authenticated and game.publisher|string() == current_user.name|string() %}
+    <form action="/edit_game/{{ game.id }}" method="GET">
+        <input type="submit" value="Edit Your Game">
+    </form>
+    {% endif %}
+
+    {% if current_user.is_authenticated and current_user.is_publisher == False %}
+        {% if game not in current_user.fav_games %}
+        <form action="/favorite/{{ game.id }}" method="POST">
+            <input type="submit" value="Favorite This Game">
+        </form>
+        {% endif %}
+
+        {% if game in current_user.fav_games %}
+        <form action="/unfavorite/{{ game.id }}" method="POST">
+            <input type="submit" value="Unfavorite This Game">
+        </form>
+        {% endif %}
+    {% endif %}
+    </fieldset>
+</div>
+
+{% if current_user.is_authenticated %}
+<fieldset>
+    <legend>Leave a comment!</legend>
+    <form method="POST" action = "{{ url_for('main.game_detail', game_id = game.id) }}">
+        <div>
+        {{ form.csrf_token }}
+
+            {{ form.data.label }}<br>
+            {{ form.data }}
+
+            <ul>
+                {% for error in form.data.errors %}
+                    <li class="error">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.submit }}
+        </div>
+    </form>
+</fieldset>
+
+<div>
+    <h3>Comments</h3>
+</div>
+
+{% for post in game.posts %}
+<div>
+    <fieldset>
+        {% if post.user.is_publisher %}
+        <a href="/profile/{{ post.user.id }}">{{ post.user.name }} (Publisher)</a>
+        {% else %}
+        <a href="/profile/{{ post.user.id }}">{{ post.user.username }}</a>
+        {% endif %}
+        
+        <p>{{ post.date }}</p>
+        <fieldset>
+        <p>{{ post.data }}</p>
+        </fieldset>
+    </fieldset>
+</div>
+{% endfor %}
+
+
+
+
+
+{% else %}
+<p>Please log in or sign up to view and leave comments</p>
+{% endif %}
+{% endblock %}

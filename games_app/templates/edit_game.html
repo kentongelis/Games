@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="{{ url_for('main.edit_game', game_id=game.id) }}" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Enter Updated Game details</legend>
+
+        {{ form.title.label }}
+        {{ form.title }}
+
+        <ul>
+            {% for error in form.title.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.description.label }}
+        {{ form.description }}
+
+        <ul>
+            {% for error in form.description.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.price.label }}
+        {{ form.price }}
+
+        <ul>
+            {% for error in form.price.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.image.label }}
+        {{ form.image }}
+
+        <ul>
+            {% for error in form.title.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.rating.label }}
+        {{ form.rating }}
+
+        {{ form.submit }}
+
+    </fieldset>
+
+</form>
+
+{% endblock %}

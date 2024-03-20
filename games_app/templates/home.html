@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Games</h2>
+
+{% for game in all_games %}
+<div>
+    <img src="/{{ game.image }}" width = "200" alt= "Game Image"/><br>
+    <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+</div>
+{% endfor %}
+
+{% endblock %}

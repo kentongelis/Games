@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% block content %}
+<div>
+    <fieldset>
+        {% if user.is_publisher %}
+
+        <legend><h2>{{ user.name }}</h2></legend>
+        <h4>Games published:</h4>
+        {% for game in user.games %}
+        <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+        {% endfor %}
+
+        {% else %}
+        <legend><h2>{{ user.username }}</h2></legend>
+        <h4>Favorite Games:</h4>
+        {% for game in user.fav_games %}
+        <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+        {% endfor %}
+
+        {% endif %}
+    </fieldset>
+</div>
+{% endblock %}
