@@ -6,7 +6,6 @@
 <form method="POST" action="{{ url_for('main.create_game') }}" enctype="multipart/form-data">
     {{ form.csrf_token }}
     <fieldset>
-        <legend>Enter Game details</legend>
 
         {{ form.title.label }}
         {{ form.title }}

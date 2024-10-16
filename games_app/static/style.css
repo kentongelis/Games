@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #eee;
+    background-color: grey;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -22,16 +22,14 @@ nav {
 nav a {
     color: navy;
     text-decoration: none;
-    border: 1px solid black;
-    padding: 1px 5px;
-    font-size: 1.2em;
 }
 
 fieldset {
     display: flex;
     flex-direction: column;
-    margin: 20px 0;
-    padding: 20px;
+    width: 200px;
+    margin: 0 auto;
+    background-color: grey;
 }
 
 fieldset * {
@@ -49,4 +47,28 @@ input[type=submit] {
 
 li.error {
     color: red;
+}
+
+#game {
+    width: 800px;
+}
+
+#game-img {
+    align-self: center;
+}
+
+#title {
+    align-items: center;
+}
+
+h1 {
+    text-align: center
+}
+
+h2 {
+    text-align: center
+}
+
+p {
+    text-align: center
 }

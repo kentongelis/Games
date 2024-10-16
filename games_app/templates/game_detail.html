@@ -2,8 +2,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
-    <fieldset>
-    <img src="/{{ game.image }}" width = "200" alt= "Game Image"/>
+    <fieldset id="game">
+    <img id="game-img" src="/{{ game.image }}" width = "200" alt= "Game Image"/>
     <h2>{{ game.title }}</h2>
     <p>{{ game.description }}</p>
     <h4>Price: {{ game.price }}</h4>
@@ -31,9 +31,10 @@
     </fieldset>
 </div>
 
+<br>
+
 {% if current_user.is_authenticated %}
 <fieldset>
-    <legend>Leave a comment!</legend>
     <form method="POST" action = "{{ url_for('main.game_detail', game_id = game.id) }}">
         <div>
         {{ form.csrf_token }}
@@ -58,9 +59,9 @@
 
 {% for post in game.posts %}
 <div>
-    <fieldset>
+    <fieldset id="comment">
         {% if post.user.is_publisher %}
-        <a href="/profile/{{ post.user.id }}">{{ post.user.name }} (Publisher)</a>
+        <a href="/profile/{{ post.user.id }}">{{ post.user.name }} <img src="static/images/checkmark.png"></a>
         {% else %}
         <a href="/profile/{{ post.user.id }}">{{ post.user.username }}</a>
         {% endif %}
