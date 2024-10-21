@@ -1,2 +1,4 @@
-jimmy1234 : jimmy
 activision123 : act123
+ubisoft : ubi123
+ea1 : ea1234
+vgl : gamelover

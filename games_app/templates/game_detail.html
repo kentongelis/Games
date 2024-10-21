@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
+<br>
 <div>
     <fieldset id="game">
     <img id="game-img" src="/{{ game.image }}" width = "200" alt= "Game Image"/>
@@ -34,9 +35,8 @@
 <br>
 
 {% if current_user.is_authenticated %}
-<fieldset>
+<fieldset id="comment-form">
     <form method="POST" action = "{{ url_for('main.game_detail', game_id = game.id) }}">
-        <div>
         {{ form.csrf_token }}
 
             {{ form.data.label }}<br>
@@ -49,7 +49,6 @@
             </ul>
 
             {{ form.submit }}
-        </div>
     </form>
 </fieldset>
 
@@ -57,22 +56,22 @@
     <h3>Comments</h3>
 </div>
 
+<div id="comments">
 {% for post in game.posts %}
-<div>
     <fieldset id="comment">
         {% if post.user.is_publisher %}
-        <a href="/profile/{{ post.user.id }}">{{ post.user.name }} <img src="static/images/checkmark.png"></a>
+        <a href="/profile/{{ post.user.id }}">{{ post.user.name }} <img id="checkmark" src="{{ url_for('static', filename='images/checkmark.png') }}"></a>
         {% else %}
         <a href="/profile/{{ post.user.id }}">{{ post.user.username }}</a>
         {% endif %}
         
         <p>{{ post.date }}</p>
-        <fieldset>
+        <fieldset id="white">
         <p>{{ post.data }}</p>
         </fieldset>
     </fieldset>
-</div>
 {% endfor %}
+</div>
 
 
 

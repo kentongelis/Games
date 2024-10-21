@@ -2,23 +2,31 @@
 {% extends 'base.html'%}
 {% block content %}
 <div>
-    <fieldset>
         {% if user.is_publisher %}
 
-        <legend><h2>{{ user.name }}</h2></legend>
-        <h4>Games published:</h4>
+        <h2>{{ user.name }}</h2>
+        <h4>Games published</h4>
+        <div id="game-list">
         {% for game in user.games %}
-        <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+        <div>
+            <img src="/{{ game.image }}" width = "200" height="250" alt= "Game Image"/><br>
+            <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+        </div>
         {% endfor %}
+        </div>
 
         {% else %}
-        <legend><h2>{{ user.username }}</h2></legend>
-        <h4>Favorite Games:</h4>
+        <h2>{{ user.username }}</h2>
+        <h4>Favorited Games</h4>
+        <div id="game-list-2">
         {% for game in user.fav_games %}
-        <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+        <div>
+            <img src="/{{ game.image }}" width = "200" height="250" alt= "Game Image"/><br>
+            <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
+        </div>
         {% endfor %}
+        </div>
 
         {% endif %}
-    </fieldset>
 </div>
 {% endblock %}

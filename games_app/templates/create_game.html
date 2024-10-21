@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<br>
+
 <form method="POST" action="{{ url_for('main.create_game') }}" enctype="multipart/form-data">
     {{ form.csrf_token }}
     <fieldset>

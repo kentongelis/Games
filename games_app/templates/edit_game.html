@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<br>
+
 <form method="POST" action="{{ url_for('main.edit_game', game_id=game.id) }}" enctype="multipart/form-data">
     {{ form.csrf_token }}
     <fieldset>

@@ -5,11 +5,13 @@
 
 <h2>Games</h2>
 
+<div id="game-list">
 {% for game in all_games %}
-<div>
-    <img src="/{{ game.image }}" width = "200" alt= "Game Image"/><br>
+    <div>
+    <img src="/{{ game.image }}" width = "200" height="250" alt= "Game Image"/><br>
     <a href="/game_detail/{{ game.id }}">{{ game.title }}</a>
-</div>
+    </div>
 {% endfor %}
+</div>
 
 {% endblock %}
